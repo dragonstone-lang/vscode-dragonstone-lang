@@ -1,0 +1,10 @@
+node_modules
+*.vsix
+.env
+
+/out
+/node_modules
+/.directory
+/.vscode-test
+
+dragonstone-lang-*.vsix

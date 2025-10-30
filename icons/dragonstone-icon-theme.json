@@ -1,0 +1,25 @@
+{
+    "iconDefinitions": {
+        "_dragonstone": { "iconPath": "../images/dragonstone.svg" }
+    },
+    "fileExtensions": {
+        "ds": "_dragonstone",
+        "dragonstone": "_dragonstone",
+        "eds": "_dragonstone"
+    },
+    "languageIds": {
+        "dragonstone": "_dragonstone",
+        "embedded dragonstone": "_dragonstone",
+        "dragonstone forge": "_dragonstone"
+    },
+    "light": {
+        "iconDefinitions": {
+        "_dragonstone": { "iconPath": "../images/dragonstone.svg" }
+        }
+    },
+    "dark": {
+        "iconDefinitions": {
+        "_dragonstone": { "iconPath": "../images/dragonstone.svg" }
+        }
+    }
+}

@@ -1,0 +1,73 @@
+{
+    "name": "dragonstone-lang",
+    "displayName": "Dragonstone Language",
+    "description": "The Dragonstone Programming Language",
+    "version": "0.0.1",
+    "publisher": "vallereya",
+    "icon": "images/dragonstone.png",
+    "galleryBanner": {
+		"color": "#1D1D1D",
+		"theme": "dark"
+	},
+	"license": "MIT",
+    "repository": {
+		"type": "git",
+		"url": "https://github.com/vallereya/vscode-dragonstone-lang"
+	},
+    "bugs": "https://github.com/vallereya/vscode-dragonstone-lang/issues",
+    "engines": {
+        "vscode": "^1.105.0"
+    },
+    "keywords": [
+		"dragonstone",
+		"syntax",
+		"languages"
+	],
+    "categories": [
+        "Programming Languages",
+        "Snippets",
+		"Themes",
+		"Formatters",
+		"Keymaps"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "dragonstone",
+            "aliases": ["Dragonstone", "dragonstone"],
+            "extensions": [".ds", ".dragonstone"],
+            "configuration": "./dragonstone-config.json"
+        },
+        {
+            "id": "embedded dragonstone",
+            "aliases": ["Embedded Dragonstone", "embedded dragonstone"],
+            "extensions": [".eds"],
+            "configuration": "./dragonstone-embedded-config.json"
+        },
+        {
+            "id": "dragonstone forge",
+            "aliases": ["Dragonstone Forge", "dragonstone forge"],
+            "extensions": [".forge"],
+            "configuration": "./dragonstone-forge-config.json"
+        }],
+        "grammars": [{
+            "language": "dragonstone",
+            "scopeName": "source.dragonstone",
+            "path": "./syntaxes/dragonstone.tmLanguage.json"
+        },
+        {
+            "language": "embedded dragonstone",
+            "scopeName": "source.dragonstone-embedded",
+            "path": "./syntaxes/dragonstone-embedded.tmLanguage.json"
+        },
+        {
+            "language": "dragonstone forge",
+            "scopeName": "source.dragonstone-forge",
+            "path": "./syntaxes/dragonstone-forge.tmLanguage.json"
+        }],
+        "iconThemes": [{
+            "id": "dragonstone-icons",
+            "label": "Dragonstone Icons",
+            "path": "./icons/dragonstone-icon-theme.json"
+        }]
+    }
+}
