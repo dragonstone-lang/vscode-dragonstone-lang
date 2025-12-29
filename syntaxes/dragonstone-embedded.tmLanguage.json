@@ -1,10 +1,11 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Dragonstone",
+	"name": "Embedded Dragonstone",
     "fileTypes":
     [
         "eds"
 	],
+    "firstLineMatch":           "^#!\/.*\\bembeddeddragonstone",
 	"patterns": [
 		{
 			"include": "#keywords"

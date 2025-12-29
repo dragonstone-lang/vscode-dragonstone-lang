@@ -1,2 +1,30 @@
-# Set default behavior to automatically normalize line endings.
-* text=auto
+## For GitHub.
+## .dragonstone = dragonstone
+## .ds files = dragonstone file
+## .eds files = embedded dragonstone file
+## .forge files = dragonstone package manager file
+
+## Line endings: normalize all text files to LF
+* text=auto eol=lf
+
+## For Windows batch files, keep CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+## For Linux batch files, LF for them.
+# *.sh text eol=lf
+
+## Dragonstone language files.
+## Temporary: highlight as Crystal, but exclude from language stats.
+*.dragonstone   linguist-language=Crystal  linguist-detectable=false
+*.ds            linguist-language=Crystal  linguist-detectable=false
+*.eds           linguist-language=Crystal  linguist-detectable=false
+
+## Forge files are TOML-like; highlight as TOML, but excluded from stats.
+*.forge         linguist-language=TOML     linguist-detectable=false
+
+## Syntax highlighting for MakeFile's.
+# Makefile        linguist-language=Makefile
+# Makefile.win    linguist-language=Makefile
+# Makefile.mac    linguist-language=Makefile
+# Makefile.lin    linguist-language=Makefile
