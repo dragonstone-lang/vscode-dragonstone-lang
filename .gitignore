@@ -13,6 +13,9 @@ node_modules
 node_modules/
 /node_modules
 out/main.js.map
+package-lock.json
+dist/
+tsconfig.tsbuildinfo
 
 # Ignore any Output/Build Cache from testing.
 /.directory
