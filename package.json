@@ -4,7 +4,7 @@
     "description":                  "The Dragonstone Programming Language",
     "version":                      "1.0.0",
     "publisher":                    "vallereya",
-    "icon":                         "images/dragonstone.png",
+    "icon":                         "index/icons/dragonstone.png",
     "galleryBanner": {
 		"color":                    "#1D1D1D",
 		"theme":                    "dark"
@@ -44,13 +44,13 @@
             },
             {
                 "id":               "embedded-dragonstone",
-                "aliases":          [ "Embedded Dragonstone" , "embedded dragonstone" ],
+                "aliases":          [ "Embedded Dragonstone" , "embedded dragonstone", "embedded-dragonstone" ],
                 "extensions":       [ ".eds" ],
                 "configuration":    "./dragonstone-embedded-config.json"
             },
             {
                 "id":               "dragonstone-forge",
-                "aliases":          [ "Dragonstone Forge", "dragonstone forge" ],
+                "aliases":          [ "Dragonstone Forge", "dragonstone forge", "dragonstone-forge" ],
                 "extensions":       [ ".forge" ],
                 "configuration":    "./dragonstone-forge-config.json"
             }
@@ -78,6 +78,7 @@
         "watch": "tsc -w -p .",
         "build:server": "npm --prefix server run build",
         "watch:server": "npm --prefix server run watch",
+        "postinstall": "npm --prefix server install",
         "vscode:prepublish": "npm run build"
     },
     "dependencies": {
