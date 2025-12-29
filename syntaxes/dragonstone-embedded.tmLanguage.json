@@ -1,37 +1,2113 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Embedded Dragonstone",
-    "fileTypes":
-    [
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Embedded Dragonstone",
+    "fileTypes": [
         "eds"
-	],
-    "firstLineMatch":           "^#!\/.*\\bembeddeddragonstone",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.dragonstone",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.dragonstone",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.dragonstone",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
-	"scopeName": "source.dragonstone-embedded"
+    ],
+    "firstLineMatch": "^#!\/.*\\bembedded",
+    "foldingStartMarker": "(?x)^(\\s*+(annotation|anno|record|module|mod|class|cls|struct|enum|def|define|abstract|abs(?!.*\\bend\\s*$)|unless|if|case|begin|for|while|until|^=begin|(\"(\\\\.|[^\"])*+\"|'(\\\\.|[^'])*+'|[^#\"'])*(\\s(do|begin|case)|(?<!\\$)[-+=&|*/~%^<>~]\\s*+(if|unless)))\\b(?![^;]*+;.*?\\bend\\b)|(\"(\\\\.|[^\"])*+\"|'(\\\\.|[^'])*+'|[^#\"'])*(\\{(?![^}]*+\\})|\\[(?![^\\]]*+\\]))).*$|[#].*?\\(fold\\)\\s*+$|^\\s*#\\[",
+    "foldingStopMarker": "(?x)((^|;)\\s*+end\\s*+([#].*)?$|(^|;)\\s*+end\\..*$|^\\s*+[}\\]] ,?\\s*+([#].*)?$|[#].*?\\(end\\)\\s*+$|^=end)|^\\s*\\]#\\s*$",
+    "patterns": [
+        {
+            "name": "comment.block.dragonstone",
+            "begin": "#\\[",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.begin.dragonstone"
+                }
+            },
+            "end": "\\]#",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.end.dragonstone"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment.block.dragonstone"
+                }
+            ]
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "keyword.control.class.dragonstone"
+                },
+                "2": {
+                    "name": "keyword.control.class.dragonstone"
+                },
+                "3": {
+                    "name": "entity.name.type.class.dragonstone"
+                },
+                "5": {
+                    "name": "punctuation.separator.dragonstone"
+                },
+                "6": {
+                    "name": "support.class.other.type-param.dragonstone"
+                },
+                "7": {
+                    "name": "entity.other.inherited-class.dragonstone"
+                },
+                "8": {
+                    "name": "punctuation.separator.dragonstone"
+                },
+                "9": {
+                    "name": "punctuation.separator.dragonstone"
+                },
+                "10": {
+                    "name": "support.class.other.type-param.dragonstone"
+                },
+                "11": {
+                    "name": "punctuation.definition.variable.dragonstone"
+                }
+            },
+            "match": "(?x)^\\s*(abstract|abs)?\\s*(class|cls|struct|record|anno|annotation|enum)\\s+(([.A-Z_:\\x{80}-\\x{10FFFF}][.\\w:\\x{80}-\\x{10FFFF}]*(\\(([,\\s.a-zA-Z0-9_:\\x{80}-\\x{10FFFF}]+)\\))?(\\s*(<)\\s*[.:A-Z\\x{80}-\\x{10FFFF}][.:\\w\\x{80}-\\x{10FFFF}]*(\\(([.a-zA-Z0-9_:]+\\s,)\\))?)?)|((<<)\\s*[.A-Z0-9_:\\x{80}-\\x{10FFFF}]+))",
+            "name": "meta.class.dragonstone"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "keyword.control.module.dragonstone"
+                },
+                "2": {
+                    "name": "entity.name.type.module.dragonstone"
+                },
+                "3": {
+                    "name": "entity.other.inherited-class.module.first.dragonstone"
+                },
+                "4": {
+                    "name": "punctuation.separator.inheritance.dragonstone"
+                },
+                "5": {
+                    "name": "entity.other.inherited-class.module.second.dragonstone"
+                },
+                "6": {
+                    "name": "punctuation.separator.inheritance.dragonstone"
+                },
+                "7": {
+                    "name": "entity.other.inherited-class.module.third.dragonstone"
+                },
+                "8": {
+                    "name": "punctuation.separator.inheritance.dragonstone"
+                }
+            },
+            "match": "^\\s*(module|mod)\\s+(([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*(::))?([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*(::))?([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*(::))*[A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*)",
+            "name": "meta.module.dragonstone"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "keyword.control.lib.dragonstone"
+                },
+                "2": {
+                    "name": "entity.name.type.lib.dragonstone"
+                },
+                "3": {
+                    "name": "entity.other.inherited-class.lib.first.dragonstone"
+                },
+                "4": {
+                    "name": "punctuation.separator.inheritance.dragonstone"
+                },
+                "5": {
+                    "name": "entity.other.inherited-class.lib.second.dragonstone"
+                },
+                "6": {
+                    "name": "punctuation.separator.inheritance.dragonstone"
+                },
+                "7": {
+                    "name": "entity.other.inherited-class.lib.third.dragonstone"
+                },
+                "8": {
+                    "name": "punctuation.separator.inheritance.dragonstone"
+                }
+            },
+            "match": "^\\s*(lib)\\s+(([A-Z]\\w*(::))?([A-Z]\\w*(::))?([A-Z]\\w*(::))*[A-Z]\\w*)",
+            "name": "meta.lib.dragonstone"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "keyword.control.lib.type.dragonstone"
+                },
+                "2": {
+                    "name": "entity.name.lib.type.dragonstone"
+                },
+                "3": {
+                    "name": "keyword.control.lib.dragonstone"
+                },
+                "4": {
+                    "name": "entity.name.lib.type.value.dragonstone"
+                }
+            },
+            "match": "(?<!\\.)\\b(type)\\s+([A-Z]\\w+)\\s*(=)\\s*(.+)",
+            "name": "meta.lib.type.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\b(fun|function|con|let|var|fix|begin|case|class|cls|else|elsif|elseif|end|ensure|enum|if|module|mod|rescue|struct|unless|when|while|with)\\b(?![?!:])",
+            "name": "keyword.control.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\b(abs|abstract|alias|as|break|extend|next|public|private|protected|return|select|yield)\\b(?![?!:])",
+            "name": "keyword.control.primary.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\b(raise|retry|redo)\\b(?![?!:])",
+            "name": "keyword.control.exception.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\b(use|from)\\b(?![?!:])",
+            "name": "keyword.control.import.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\b(eecho|echo)\\b(?![?!:])",
+            "name": "support.function.kernel.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\b(e|ee)!|(eecho|echo)\\b(?![?!:])",
+            "name": "support.function.kernel.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\b(getter|setter|property|bag|map|para|range|tuple)\\b(?![?!:])",
+            "name": "keyword.other.special-method.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\b(typeof)\\b(?![?!:])",
+            "name": "keyword.control.type.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\bdo\\b\\s*",
+            "name": "keyword.control.start-block.dragonstone"
+        },
+        {
+            "match": "(?<=\\{)(\\s+)",
+            "name": "meta.syntax.dragonstone.start-block"
+        },
+        {
+            "match": "(mut|own)\\b",
+            "captures": {
+                "0": {
+                    "name": "constant.language.nil.dragonstone"
+                }
+            }
+        },
+        {
+            "match": "(@)(own)\\b",
+            "captures": {
+                "0": {
+                    "name": "constant.language.nil.dragonstone"
+                },
+                "1": {
+                    "name": "string.regexp.arbitrary-repetition.dragonstone"
+                }
+            }
+        },
+        {
+            "match": "(&)(mut)\\b",
+            "captures": {
+                "0": {
+                    "name": "constant.language.nil.dragonstone"
+                },
+                "1": {
+                    "name": "string.regexp.arbitrary-repetition.dragonstone"
+                }
+            }
+        },
+        {
+            "match": "\\b(nil|null)\\b(?![?!:])",
+            "name": "constant.language.nil.dragonstone"
+        },
+        {
+            "match": "\\b(true|false|argv|argc|argf|ARGV|ARGC|ARGF|stdin|stdout|stderr|STDIN|STDOUT|STDERR)\\b(?![?!:])",
+            "name": "constant.language.boolean.dragonstone"
+        },
+        {
+            "match": "\\b(__(DIR|FILE|LINE|END_LINE)__)\\b(?![?!:])",
+            "name": "variable.language.dragonstone"
+        },
+        {
+            "match": "\\b(self)\\b(?![?!:])",
+            "name": "variable.language.self.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\b((def_(clone|equals|equals_and_hash|hash)|delegate|forward_missing_to)\\b)(?![?!:])",
+            "name": "support.function.kernel.dragonstone"
+        },
+        {
+            "begin": "\\b(use|from|as)\\b",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.control.import.dragonstone"
+                }
+            },
+            "end": "$|(?=#)",
+            "name": "meta.require.dragonstone",
+            "patterns": [
+                {
+                    "begin": "\\{",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.section.scope.dragonstone"
+                        }
+                    },
+                    "end": "\\}",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.section.scope.dragonstone"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "match": "\\b[A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*",
+                            "name": "entity.name.type.class.dragonstone"
+                        },
+                        {
+                            "include": "$self"
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\b(from)\\b",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.import.dragonstone"
+                        }
+                    },
+                    "end": "$|(?=#)",
+                    "patterns": [
+                        {
+                            "match": "\"[^\"]*\"|'[^']*'",
+                            "name": "string.quoted.dragonstone"
+                        },
+                        {
+                            "include": "$self"
+                        }
+                    ]
+                },
+                {
+                    "match": "\"[^\"]*\"|'[^']*'",
+                    "name": "string.quoted.dragonstone"
+                },
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        {
+            "match": "\\b(e\\!|ee\\!)\\b",
+            "name": "keyword.control.debug.dragonstone"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.variable.dragonstone"
+                }
+            },
+            "match": "(@)(?!own\\b)[a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*[?!=]?",
+            "name": "variable.other.readwrite.instance.dragonstone"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.variable.dragonstone"
+                }
+            },
+            "match": "(@@)[a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*[?!=]?",
+            "name": "variable.other.readwrite.class.dragonstone"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.variable.dragonstone"
+                }
+            },
+            "match": "(\\$)[a-zA-Z_]\\w*",
+            "name": "variable.other.readwrite.global.dragonstone"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.variable.dragonstone"
+                }
+            },
+            "match": "(\\$$)[a-zA-Z_]\\w*",
+            "name": "variable.other.readwrite.global.dragonstone"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.variable.dragonstone"
+                }
+            },
+            "match": "(?!%[Qxrqwi]?[\\(\\[\\{\\<\\|])%([a-zA-Z_]\\w*\\.)*[a-zA-Z_]\\w*",
+            "name": "variable.other.readwrite.fresh.dragonstone"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.variable.dragonstone"
+                }
+            },
+            "match": "(\\$)(!|@|&|`|'|\\+|\\d+|~|=|/|\\\\|,|;|\\.|<|>|_|\\*|\\$|\\?|:|\"|-[0adFiIlpv])",
+            "name": "variable.other.readwrite.global.pre-defined.dragonstone"
+        },
+        {
+            "begin": "\\b(ENV|ENVIRONMENT)\\[",
+            "beginCaptures": {
+                "1": {
+                    "name": "variable.other.constant.dragonstone"
+                }
+            },
+            "end": "\\]",
+            "name": "meta.environment-variable.dragonstone",
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        {
+            "match": "\\b[A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*",
+            "name": "support.class.dragonstone"
+        },
+        {
+            "match": "(?<!\\.)\\b(abort|at_exit|caller|exit|gets|loop|main|raise|rand|read_line|sleep|spawn|sprintf|system|debugger|record|spawn|thread|channel)\\b(?![?!:])",
+            "name": "support.function.kernel.dragonstone"
+        },
+        {
+            "match": "\\b[_A-Z]+\\b",
+            "name": "variable.other.constant.dragonstone"
+        },
+        {
+            "name": "support.class.other.type-param.dragonstone",
+            "match": "(?<!\\.)\\b(str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para)\\b(?![?!:])(?!\\s*\\()"
+        },
+        {
+            "begin": "\\b(bag)\\s*\\(",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.other.special-method.dragonstone"
+                },
+                "2": {
+                    "name": "punctuation.definition.parameters.dragonstone"
+                }
+            },
+            "end": "\\)",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.parameters.dragonstone"
+                }
+            },
+            "name": "meta.type.bag-constructor.dragonstone",
+            "patterns": [
+                {
+                    "match": "[A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para",
+                    "name": "entity.name.type.dragonstone"
+                },
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        {
+            "begin": "\\b(para)\\s*\\(",
+            "beginCaptures": {
+                "1": {
+                    "name": "support.class.other.type-param.dragonstone"
+                },
+                "2": {
+                    "name": "punctuation.definition.parameters.dragonstone"
+                }
+            },
+            "end": "\\)",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.parameters.dragonstone"
+                }
+            },
+            "name": "meta.type.para-annotation.dragonstone",
+            "patterns": [
+                {
+                    "match": "[A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para",
+                    "name": "entity.name.type.dragonstone"
+                },
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        {
+            "match": "\\b([a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*)\\s*(:)\\s*([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para)(\\s*\\|\\s*([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para))*",
+            "captures": {
+                "1": {
+                    "name": "variable.other.dragonstone"
+                },
+                "2": {
+                    "name": "punctuation.separator.type.dragonstone"
+                },
+                "3": {
+                    "name": "entity.name.type.dragonstone"
+                },
+                "4": {
+                    "name": "keyword.operator.union.dragonstone"
+                },
+                "5": {
+                    "name": "entity.name.type.dragonstone"
+                }
+            },
+            "name": "meta.type.annotation.dragonstone"
+        },
+        {
+            "match": "\\s*(->)\\s*([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para)(\\s*\\|\\s*([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para))*",
+            "captures": {
+                "1": {
+                    "name": "keyword.operator.arrow.dragonstone"
+                },
+                "2": {
+                    "name": "entity.name.type.dragonstone"
+                },
+                "3": {
+                    "name": "keyword.operator.union.dragonstone"
+                },
+                "4": {
+                    "name": "entity.name.type.dragonstone"
+                }
+            },
+            "name": "meta.function.return-type.dragonstone"
+        },
+        {
+            "match": "\\s*\\|\\s*",
+            "name": "keyword.operator.union.dragonstone"
+        },
+        {
+            "begin": "(?x)\n(?=def|define\\b)                          # optimization to help Oniguruma fail fast\n(?<=^|\\s)(def|define)\\s+\n(\n  (?>[a-zA-Z_]\\w*(?>\\.|::))?      # method prefix\n  (?>                               # method name\n    [a-zA-Z_]\\w*(?>[?!]|=(?!>))?\n    |\n    \\^|===?|!=|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[][?=]?|\\[]=?\n  )\n)\n\\s*(\\()",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.control.def.dragonstone"
+                },
+                "2": {
+                    "name": "entity.name.function.dragonstone"
+                },
+                "3": {
+                    "name": "punctuation.definition.parameters.dragonstone"
+                }
+            },
+            "end": "\\)",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.parameters.dragonstone"
+                }
+            },
+            "name": "meta.function.method.with-arguments.dragonstone",
+            "patterns": [
+                {
+                    "begin": "(?![\\s,)])",
+                    "end": "(?=,|\\)\\s*)",
+                    "patterns": [
+                        {
+                            "captures": {
+                                "1": {
+                                    "name": "storage.type.variable.dragonstone"
+                                },
+                                "2": {
+                                    "name": "constant.other.symbol.hashkey.parameter.function.dragonstone"
+                                },
+                                "3": {
+                                    "name": "punctuation.definition.constant.hashkey.dragonstone"
+                                },
+                                "4": {
+                                    "name": "variable.parameter.function.dragonstone"
+                                }
+                            },
+                            "match": "\\G([&*]?)(?:([_a-zA-Z]\\w*(:))|([_a-zA-Z]\\w*))"
+                        },
+                        {
+                            "include": "$self"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "keyword.control.def.dragonstone"
+                },
+                "3": {
+                    "name": "entity.name.function.dragonstone"
+                }
+            },
+            "match": "(?x)\n(?=def|define\\b)                            # optimization to help Oniguruma fail fast\n(?<=^|\\s)(def|define)\\b\n(\n  \\s+\n  (\n    (?>[a-zA-Z_]\\w*(?>\\.|::))?      # method prefix\n    (?>                               # method name\n      [a-zA-Z_]\\w*(?>[?!]|=(?!>))?\n      |\n      \\^|===?|!=|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[][?=]?|\\[]=?\n    )\n  )\n)?",
+            "name": "meta.function.method.without-arguments.dragonstone"
+        },
+        {
+            "begin": "->\\s*\\(",
+            "beginCaptures": {
+                "0": {
+                    "name": "keyword.operator.arrow.dragonstone"
+                }
+            },
+            "end": "\\)",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.parameters.dragonstone"
+                }
+            },
+            "name": "meta.function.lambda.parameters.dragonstone",
+            "patterns": [
+                {
+                    "match": "([a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*)\\s*(:)\\s*([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para)",
+                    "captures": {
+                        "1": {
+                            "name": "variable.parameter.function.dragonstone"
+                        },
+                        "2": {
+                            "name": "punctuation.separator.type.dragonstone"
+                        },
+                        "3": {
+                            "name": "entity.name.type.dragonstone"
+                        }
+                    }
+                },
+                {
+                    "match": "[a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*",
+                    "name": "variable.parameter.function.dragonstone"
+                },
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        {
+            "name": "constant.numeric.float.dragonstone",
+            "match": "\\b[0-9][0-9_]*\\.[0-9][0-9_]*([eE][+-]?[0-9_]+)?(f32|f64)?\\b"
+        },
+        {
+            "name": "constant.numeric.float.dragonstone",
+            "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?[eE][+-]?[0-9_]+(f32|f64)?\\b"
+        },
+        {
+            "name": "constant.numeric.float.dragonstone",
+            "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([eE][+-]?[0-9_]+)?(f32|f64)\\b"
+        },
+        {
+            "name": "constant.numeric.integer.decimal.dragonstone",
+            "match": "\\b(?!0[0-9])[0-9][0-9_]*([ui](8|16|32|64|128))?\\b"
+        },
+        {
+            "name": "constant.numeric.integer.hexadecimal.dragonstone",
+            "match": "\\b0x[a-fA-F0-9_]+([ui](8|16|32|64|128))?\\b"
+        },
+        {
+            "name": "constant.numeric.integer.octal.dragonstone",
+            "match": "\\b0o[0-7_]+([ui](8|16|32|64|128))?\\b"
+        },
+        {
+            "name": "constant.numeric.integer.binary.dragonstone",
+            "match": "\\b0b[01_]+([ui](8|16|32|64|128))?\\b"
+        },
+        {
+            "begin": ":'",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.symbol.begin.dragonstone"
+                }
+            },
+            "end": "'",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.symbol.end.dragonstone"
+                }
+            },
+            "name": "constant.other.symbol.dragonstone",
+            "patterns": [
+                {
+                    "match": "\\\\['\\\\]",
+                    "name": "constant.character.escape.dragonstone"
+                }
+            ]
+        },
+        {
+            "begin": ":\"",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.section.symbol.begin.dragonstone"
+                }
+            },
+            "end": "\"",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.section.symbol.end.dragonstone"
+                }
+            },
+            "name": "constant.other.symbol.interpolated.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "match": "(?<!\\()/=",
+            "name": "keyword.operator.assignment.augmented.dragonstone"
+        },
+        {
+            "begin": "'",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "'",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.single.dragonstone",
+            "patterns": [
+                {
+                    "match": "\\\\'|\\\\\\\\",
+                    "name": "constant.character.escape.dragonstone"
+                }
+            ]
+        },
+        {
+            "begin": "\"",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\"",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.double.interpolated.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "`",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "`",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.interpolated.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "%x\\{",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\}",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.interpolated.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_curly_i"
+                }
+            ]
+        },
+        {
+            "begin": "%x\\[",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\]",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.interpolated.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_brackets_i"
+                }
+            ]
+        },
+        {
+            "begin": "%x\\<",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\>",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.interpolated.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_ltgt_i"
+                }
+            ]
+        },
+        {
+            "begin": "%x\\(",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\)",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.interpolated.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_parens_i"
+                }
+            ]
+        },
+        {
+            "begin": "%x\\|",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\|",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.interpolated.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?x) (?: ^| (?<=[=>~(?:\\[,|&;] | [\\s;]if\\s| [\\s;]elsif\\s | [\\s;]while\\s | [\\s;]unless\\s | [\\s;]when\\s | [\\s;]assert_match\\s | [\\s;]or\\s| [\\s;]and\\s | [\\s;]not\\s | [\\s.]index\\s| [\\s.]scan\\s | [\\s.]sub\\s | [\\s.]sub!\\s | [\\s.]gsub\\s | [\\s.]gsub!\\s | [\\s.]match\\s ) | (?<=^when\\s| ^if\\s | ^elsif\\s | ^while\\s | ^unless\\s ) ) \\s*((/))(?![*+{}?])",
+            "captures": {
+                "1": {
+                    "name": "string.regexp.classic.dragonstone"
+                },
+                "2": {
+                    "name": "punctuation.definition.string.dragonstone"
+                }
+            },
+            "contentName": "string.regexp.classic.dragonstone",
+            "end": "((/[imsx]*))",
+            "patterns": [
+                {
+                    "include": "#regex_sub"
+                }
+            ]
+        },
+        {
+            "begin": "%r\\{",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\}[imsx]*",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.regexp.mod-r.dragonstone",
+            "patterns": [
+                {
+                    "include": "#regex_sub"
+                },
+                {
+                    "include": "#nest_curly_r"
+                }
+            ]
+        },
+        {
+            "begin": "%r\\[",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\][imsx]*",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.regexp.mod-r.dragonstone",
+            "patterns": [
+                {
+                    "include": "#regex_sub"
+                },
+                {
+                    "include": "#nest_brackets_r"
+                }
+            ]
+        },
+        {
+            "begin": "%r\\(",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\)[imsx]*",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.regexp.mod-r.dragonstone",
+            "patterns": [
+                {
+                    "include": "#regex_sub"
+                },
+                {
+                    "include": "#nest_parens_r"
+                }
+            ]
+        },
+        {
+            "begin": "%r\\<",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\>[imsx]*",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.regexp.mod-r.dragonstone",
+            "patterns": [
+                {
+                    "include": "#regex_sub"
+                },
+                {
+                    "include": "#nest_ltgt_r"
+                }
+            ]
+        },
+        {
+            "begin": "%r\\|",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\|[imsx]*",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.regexp.mod-r.dragonstone",
+            "patterns": [
+                {
+                    "include": "#regex_sub"
+                }
+            ]
+        },
+        {
+            "begin": "%Q?\\(",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\)",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.other.literal.upper.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_parens_i"
+                }
+            ]
+        },
+        {
+            "begin": "%Q?\\[",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\]",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.other.literal.upper.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_brackets_i"
+                }
+            ]
+        },
+        {
+            "begin": "%Q?\\<",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\>",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.other.literal.upper.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_ltgt_i"
+                }
+            ]
+        },
+        {
+            "begin": "%Q?\\{",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\}",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.double.dragonstone.mod",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_curly_i"
+                }
+            ]
+        },
+        {
+            "begin": "%Q\\|",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\|",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.other.literal.upper.dragonstone",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "%[qwi]\\(",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\)",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.other.literal.lower.dragonstone",
+            "patterns": [
+                {
+                    "match": "\\\\\\)|\\\\\\\\",
+                    "name": "constant.character.escape.dragonstone"
+                },
+                {
+                    "include": "#nest_parens"
+                }
+            ]
+        },
+        {
+            "begin": "%[qwi]\\<",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\>",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.other.literal.lower.dragonstone",
+            "patterns": [
+                {
+                    "match": "\\\\\\>|\\\\\\\\",
+                    "name": "constant.character.escape.dragonstone"
+                },
+                {
+                    "include": "#nest_ltgt"
+                }
+            ]
+        },
+        {
+            "begin": "%[qwi]\\[",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\]",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.other.literal.lower.dragonstone",
+            "patterns": [
+                {
+                    "match": "\\\\\\]|\\\\\\\\",
+                    "name": "constant.character.escape.dragonstone"
+                },
+                {
+                    "include": "#nest_brackets"
+                }
+            ]
+        },
+        {
+            "begin": "%[qwi]\\{",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\}",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.other.literal.lower.dragonstone",
+            "patterns": [
+                {
+                    "match": "\\\\\\}|\\\\\\\\",
+                    "name": "constant.character.escape.dragonstone"
+                },
+                {
+                    "include": "#nest_curly"
+                }
+            ]
+        },
+        {
+            "begin": "%[qwi]\\|",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\|",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.quoted.other.literal.lower.dragonstone",
+            "patterns": [
+                {
+                    "match": "\\\\."
+                }
+            ]
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.constant.dragonstone"
+                }
+            },
+            "match": "(?<!:)(:)(?>[a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*(?>[?!]|=(?![>=]))?|===?|>[>=]?|<[<=]?|<=>|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\][?=]?|@@?[a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*)",
+            "name": "constant.other.symbol.dragonstone"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.constant.dragonstone"
+                }
+            },
+            "match": "(?>[a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*(?>[?!])?)(:)(?!:)",
+            "name": "constant.other.symbol.dragonstone.19syntax"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.comment.dragonstone"
+                }
+            },
+            "match": "(?:^[ \\t]+)?(#)(?!\\[).*$\\n?",
+            "name": "comment.line.number-sign.dragonstone"
+        },
+        {
+            "match": "(?<!}})\\b_([\\w]+[?!]?)\\b(?!\\()",
+            "name": "comment.unused.dragonstone"
+        },
+        {
+            "match": "(?<!}})\\b_([\\w]+[?!]?)\\b(?!\\()",
+            "name": "comment.unused.dragonstone"
+        },
+        {
+            "begin": "(?><<-('?)((?:[_\\w]+_|)HTML)\\b\\1)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "contentName": "text.html.embedded.dragonstone",
+            "end": "\\s*\\2\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.embedded.html.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "text.html.basic"
+                },
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?><<-('?)((?:[_\\w]+_|)SQL)\\b\\1)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "contentName": "text.sql.embedded.dragonstone",
+            "end": "\\s*\\2\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.embedded.sql.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "source.sql"
+                },
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?><<-('?)((?:[_\\w]+_|)CSS)\\b\\1)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "contentName": "text.css.embedded.dragonstone",
+            "end": "\\s*\\2\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.embedded.css.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "source.css"
+                },
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?><<-('?)((?:[_\\w]+_|)CPP)\\b\\1)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "contentName": "text.c++.embedded.dragonstone",
+            "end": "\\s*\\2\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.embedded.cplusplus.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "source.c++"
+                },
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?><<-('?)((?:[_\\w]+_|)C)\\b\\1)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "contentName": "text.c.embedded.dragonstone",
+            "end": "\\s*\\2\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.embedded.c.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "source.c"
+                },
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?><<-('?)((?:[_\\w]+_|)(?:JS|JAVASCRIPT))\\b\\1)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "contentName": "text.js.embedded.dragonstone",
+            "end": "\\s*\\2\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.embedded.js.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "source.js"
+                },
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?><<-('?)((?:[_\\w]+_|)JQUERY)\\b\\1)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "contentName": "text.js.jquery.embedded.dragonstone",
+            "end": "\\s*\\2\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.embedded.js.jquery.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "source.js.jquery"
+                },
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?><<-('?)((?:[_\\w]+_|)(?:SH|SHELL))\\b\\1)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "contentName": "text.shell.embedded.dragonstone",
+            "end": "\\s*\\2\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.embedded.shell.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "source.shell"
+                },
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?><<-('?)((?:[_\\w]+_|)dragonstone)\\b\\1)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "contentName": "text.dragonstone.embedded.dragonstone",
+            "end": "\\s*\\2\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.embedded.dragonstone.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "source.dragonstone"
+                },
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?><<-'(\\w+)')",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\s*\\1\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.heredoc.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?><<-(\\w+)\\b)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dragonstone"
+                }
+            },
+            "end": "\\s*\\1\\b",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dragonstone"
+                }
+            },
+            "name": "string.unquoted.heredoc.dragonstone",
+            "patterns": [
+                {
+                    "include": "#heredoc"
+                },
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                }
+            ]
+        },
+        {
+            "begin": "(?<={|{\\s|[^A-Za-z0-9_]do|^do|[^A-Za-z0-9_]do\\s|^do\\s)(\\|)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.separator.variable.dragonstone"
+                }
+            },
+            "end": "(?<!\\|)(\\|)(?!\\|)",
+            "patterns": [
+                {
+                    "include": "source.dragonstone"
+                },
+                {
+                    "match": "[_a-zA-Z][_a-zA-Z0-9]*",
+                    "name": "variable.other.block.dragonstone"
+                },
+                {
+                    "match": ",",
+                    "name": "punctuation.separator.variable.dragonstone"
+                }
+            ]
+        },
+        {
+            "match": "->",
+            "name": "punctuation.separator.key-value.dragonstone"
+        },
+        {
+            "match": "(?<![-\\s])->(?!\\s*[A-Za-z])",
+            "name": "keyword.operator.arrow.dragonstone"
+        },
+        {
+            "match": "<<=|>>=|//=|%=|&{1,2}=|&\\+=|&\\-=|&\\*=|&\\*\\*=|\\*=|\\*\\*=|\\+=|-=|\\^=|\\|{1,2}=|<<|>>",
+            "name": "keyword.operator.assignment.augmented.dragonstone"
+        },
+        {
+            "match": "<=>|<(?!<|=)|>(?!<|=|>)|<=|>=|===|==|=~|!=|!~|(?<=[ \\t])\\?",
+            "name": "keyword.operator.comparison.dragonstone"
+        },
+        {
+            "match": "\\.\\.\\.|\\.\\.",
+            "name": "keyword.operator.range.dragonstone"
+        },
+        {
+            "match": "//",
+            "name": "keyword.operator.arithmetic.dragonstone"
+        },
+        {
+            "match": "&\\+|&\\-|&\\*|&\\*\\*",
+            "name": "keyword.operator.arithmetic.wrapping.dragonstone"
+        },
+        {
+            "match": "<<|>>",
+            "name": "keyword.operator.bitwise.shift.dragonstone"
+        },
+        {
+            "match": "\\]\\?",
+            "name": "keyword.operator.safe-access.dragonstone"
+        },
+        {
+            "match": "(?<=^|[ \\t])!|&&|\\|\\||\\^",
+            "name": "keyword.operator.logical.dragonstone"
+        },
+        {
+            "match": "(\\{\\%|\\%\\}|\\{\\{|\\}\\})",
+            "name": "keyword.operator.macro.dragonstone"
+        },
+        {
+            "match": "(&\\.)\\s*(?![A-Z])",
+            "captures": {
+                "1": {
+                    "name": "punctuation.separator.method.dragonstone"
+                }
+            }
+        },
+        {
+            "match": "(%|&(?!\\+|-|\\*)|\\*\\*|\\*|\\+|\\-|/)",
+            "name": "keyword.operator.arithmetic.dragonstone"
+        },
+        {
+            "match": "=",
+            "name": "keyword.operator.assignment.dragonstone"
+        },
+        {
+            "match": "\\||~",
+            "name": "keyword.operator.other.dragonstone"
+        },
+        {
+            "match": ":",
+            "name": "punctuation.separator.other.dragonstone"
+        },
+        {
+            "match": "\\;",
+            "name": "punctuation.separator.statement.dragonstone"
+        },
+        {
+            "match": ",",
+            "name": "punctuation.separator.object.dragonstone"
+        },
+        {
+            "match": "\\.|::",
+            "name": "punctuation.separator.method.dragonstone"
+        },
+        {
+            "match": "\\{|\\}",
+            "name": "punctuation.section.scope.dragonstone"
+        },
+        {
+            "match": "\\[|\\]",
+            "name": "punctuation.section.array.dragonstone"
+        },
+        {
+            "match": "\\(|\\)",
+            "name": "punctuation.section.function.dragonstone"
+        },
+        {
+            "begin": "(?=[a-zA-Z0-9_!?]+\\()",
+            "end": "(?<=\\))",
+            "name": "meta.function-call.dragonstone",
+            "patterns": [
+                {
+                    "match": "([a-zA-Z0-9_!?]+)(?=\\()",
+                    "name": "entity.name.function.dragonstone"
+                },
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        {
+            "match": "((?<=\\W)\\b|^)\\w+\\b(?=\\s*([\\]\\)\\}\\=\\+\\-\\*\\/\\^\\$\\,\\.]|<\\s|<<[\\s|\\.]))",
+            "name": "variable.other.dragonstone"
+        }
+    ],
+    "repository": {
+        "escaped_char": {
+            "match": "\\\\(?:[0-7]{1,3}|x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|u\\{[a-fA-F0-9 ]+\\}|.)",
+            "name": "constant.character.escape.dragonstone"
+        },
+        "heredoc": {
+            "begin": "^<<-?\\w+",
+            "end": "$",
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "comment.block.dragonstone": {
+            "name": "comment.block.dragonstone",
+            "begin": "#\\[",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.begin.dragonstone"
+                }
+            },
+            "end": "\\]#",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.end.dragonstone"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment.block.dragonstone"
+                }
+            ]
+        },
+        "interpolated_dragonstone": {
+            "patterns": [
+                {
+                    "begin": "#\\{",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.section.embedded.begin.dragonstone"
+                        }
+                    },
+                    "contentName": "source.dragonstone",
+                    "end": "(\\})",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.section.embedded.end.dragonstone"
+                        },
+                        "1": {
+                            "name": "source.dragonstone"
+                        }
+                    },
+                    "name": "meta.embedded.line.dragonstone",
+                    "patterns": [
+                        {
+                            "include": "#nest_curly_and_self"
+                        },
+                        {
+                            "include": "$self"
+                        }
+                    ],
+                    "repository": {
+                        "nest_curly_and_self": {
+                            "patterns": [
+                                {
+                                    "begin": "\\{",
+                                    "captures": {
+                                        "0": {
+                                            "name": "punctuation.section.scope.dragonstone"
+                                        }
+                                    },
+                                    "end": "\\}",
+                                    "patterns": [
+                                        {
+                                            "include": "#nest_curly_and_self"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "include": "$self"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.variable.dragonstone"
+                        }
+                    },
+                    "match": "(#@)[a-zA-Z_]\\w*",
+                    "name": "variable.other.readwrite.instance.dragonstone"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.variable.dragonstone"
+                        }
+                    },
+                    "match": "(#@@)[a-zA-Z_]\\w*",
+                    "name": "variable.other.readwrite.class.dragonstone"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.variable.dragonstone"
+                        }
+                    },
+                    "match": "(#\\$)[a-zA-Z_]\\w*",
+                    "name": "variable.other.readwrite.global.dragonstone"
+                }
+            ]
+        },
+        "nest_brackets": {
+            "begin": "\\[",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\]",
+            "patterns": [
+                {
+                    "include": "#nest_brackets"
+                }
+            ]
+        },
+        "nest_brackets_i": {
+            "begin": "\\[",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\]",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_brackets_i"
+                }
+            ]
+        },
+        "nest_brackets_r": {
+            "begin": "\\[",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\]",
+            "patterns": [
+                {
+                    "include": "#regex_sub"
+                },
+                {
+                    "include": "#nest_brackets_r"
+                }
+            ]
+        },
+        "nest_curly": {
+            "begin": "\\{",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\}",
+            "patterns": [
+                {
+                    "include": "#nest_curly"
+                }
+            ]
+        },
+        "nest_curly_and_self": {
+            "patterns": [
+                {
+                    "begin": "\\{",
+                    "captures": {
+                        "0": {
+                            "name": "punctuation.section.scope.dragonstone"
+                        }
+                    },
+                    "end": "\\}",
+                    "patterns": [
+                        {
+                            "include": "#nest_curly_and_self"
+                        }
+                    ]
+                },
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "nest_curly_i": {
+            "begin": "\\{",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\}",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_curly_i"
+                }
+            ]
+        },
+        "nest_curly_r": {
+            "begin": "\\{",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\}",
+            "patterns": [
+                {
+                    "include": "#regex_sub"
+                },
+                {
+                    "include": "#nest_curly_r"
+                }
+            ]
+        },
+        "nest_ltgt": {
+            "begin": "\\<",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\>",
+            "patterns": [
+                {
+                    "include": "#nest_ltgt"
+                }
+            ]
+        },
+        "nest_ltgt_i": {
+            "begin": "\\<",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\>",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_ltgt_i"
+                }
+            ]
+        },
+        "nest_ltgt_r": {
+            "begin": "\\<",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\>",
+            "patterns": [
+                {
+                    "include": "#regex_sub"
+                },
+                {
+                    "include": "#nest_ltgt_r"
+                }
+            ]
+        },
+        "nest_parens": {
+            "begin": "\\(",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\)",
+            "patterns": [
+                {
+                    "include": "#nest_parens"
+                }
+            ]
+        },
+        "nest_parens_i": {
+            "begin": "\\(",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\)",
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "include": "#nest_parens_i"
+                }
+            ]
+        },
+        "nest_parens_r": {
+            "begin": "\\(",
+            "captures": {
+                "0": {
+                    "name": "punctuation.section.scope.dragonstone"
+                }
+            },
+            "end": "\\)",
+            "patterns": [
+                {
+                    "include": "#regex_sub"
+                },
+                {
+                    "include": "#nest_parens_r"
+                }
+            ]
+        },
+        "regex_sub": {
+            "patterns": [
+                {
+                    "include": "#interpolated_dragonstone"
+                },
+                {
+                    "include": "#escaped_char"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.arbitrary-repetition.dragonstone"
+                        },
+                        "3": {
+                            "name": "punctuation.definition.arbitrary-repetition.dragonstone"
+                        }
+                    },
+                    "match": "({)\\d+(,\\d+)?(})",
+                    "name": "string.regexp.arbitrary-repetition.dragonstone"
+                },
+                {
+                    "begin": "\\[(?:\\^?])?",
+                    "captures": {
+                        "0": {
+                            "name": "punctuation.definition.character-class.dragonstone"
+                        }
+                    },
+                    "end": "]",
+                    "name": "string.regexp.character-class.dragonstone",
+                    "patterns": [
+                        {
+                            "include": "#escaped_char"
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\(",
+                    "captures": {
+                        "0": {
+                            "name": "punctuation.definition.group.dragonstone"
+                        }
+                    },
+                    "end": "\\)",
+                    "name": "string.regexp.group.dragonstone",
+                    "patterns": [
+                        {
+                            "include": "#regex_sub"
+                        }
+                    ]
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.comment.dragonstone"
+                        }
+                    },
+                    "match": "(?<=^|\\s)(#)\\s[[a-zA-Z0-9,. \\t?!-][^\\x{00}-\\x{7F}]]*$",
+                    "name": "comment.line.number-sign.dragonstone"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.dragonstone-embedded"
 }

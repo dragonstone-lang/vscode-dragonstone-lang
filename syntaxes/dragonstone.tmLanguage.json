@@ -294,7 +294,6 @@
             ]
         },
         {
-            "comment": "Debug print statements",
             "match": "\\b(e\\!|ee\\!)\\b",
             "name": "keyword.control.debug.dragonstone"
         },
@@ -369,8 +368,7 @@
         },
         {
             "match": "\\b[A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*",
-            "name": "support.class.dragonstone",
-            "comment": "Literals name of dragonstone"
+            "name": "support.class.dragonstone"
         },
         {
             "match": "(?<!\\.)\\b(abort|at_exit|caller|exit|gets|loop|main|raise|rand|read_line|sleep|spawn|sprintf|system|debugger|record|spawn|thread|channel)\\b(?![?!:])",
@@ -378,15 +376,13 @@
         },
         {
             "match": "\\b[_A-Z]+\\b",
-            "name": "variable.other.constant.dragonstone",
-            "comment": "Constant name in any where"
+            "name": "variable.other.constant.dragonstone"
         },
         {
             "name": "support.class.other.type-param.dragonstone",
             "match": "(?<!\\.)\\b(str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para)\\b(?![?!:])(?!\\s*\\()"
         },
         {
-            "comment": "Bag constructor: bag(type)",
             "begin": "\\b(bag)\\s*\\(",
             "beginCaptures": {
                 "1": {
@@ -414,7 +410,6 @@
             ]
         },
         {
-            "comment": "Para type annotation: para(type1, type2)",
             "begin": "\\b(para)\\s*\\(",
             "beginCaptures": {
                 "1": {
@@ -442,7 +437,6 @@
             ]
         },
         {
-            "comment": "Type annotations: variable: type (must come before other patterns)",
             "match": "\\b([a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*)\\s*(:)\\s*([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para)(\\s*\\|\\s*([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para))*",
             "captures": {
                 "1": {
@@ -464,7 +458,6 @@
             "name": "meta.type.annotation.dragonstone"
         },
         {
-            "comment": "Function return type annotation: -> type",
             "match": "\\s*(->)\\s*([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para)(\\s*\\|\\s*([A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*|str|int|bool|char|float|nil|sym|arr|array|map|range|tuple|para))*",
             "captures": {
                 "1": {
@@ -483,7 +476,6 @@
             "name": "meta.function.return-type.dragonstone"
         },
         {
-            "comment": "Union type operator",
             "match": "\\s*\\|\\s*",
             "name": "keyword.operator.union.dragonstone"
         },
@@ -500,7 +492,6 @@
                     "name": "punctuation.definition.parameters.dragonstone"
                 }
             },
-            "comment": "The method pattern comes from the symbol pattern. See there for an explanation.",
             "end": "\\)",
             "endCaptures": {
                 "0": {
@@ -546,12 +537,10 @@
                     "name": "entity.name.function.dragonstone"
                 }
             },
-            "comment": " the optional name is just to catch the def also without a method-name",
             "match": "(?x)\n(?=def|define\\b)                            # optimization to help Oniguruma fail fast\n(?<=^|\\s)(def|define)\\b\n(\n  \\s+\n  (\n    (?>[a-zA-Z_]\\w*(?>\\.|::))?      # method prefix\n    (?>                               # method name\n      [a-zA-Z_]\\w*(?>[?!]|=(?!>))?\n      |\n      \\^|===?|!=|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[][?=]?|\\[]=?\n    )\n  )\n)?",
             "name": "meta.function.method.without-arguments.dragonstone"
         },
         {
-            "comment": "Lambda/Para literal: ->(params) { body }",
             "begin": "->\\s*\\(",
             "beginCaptures": {
                 "0": {
@@ -590,37 +579,30 @@
             ]
         },
         {
-            "comment": "Floating point literal (fraction)",
             "name": "constant.numeric.float.dragonstone",
             "match": "\\b[0-9][0-9_]*\\.[0-9][0-9_]*([eE][+-]?[0-9_]+)?(f32|f64)?\\b"
         },
         {
-            "comment": "Floating point literal (exponent)",
             "name": "constant.numeric.float.dragonstone",
             "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?[eE][+-]?[0-9_]+(f32|f64)?\\b"
         },
         {
-            "comment": "Floating point literal (typed)",
             "name": "constant.numeric.float.dragonstone",
             "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([eE][+-]?[0-9_]+)?(f32|f64)\\b"
         },
         {
-            "comment": "Integer literal (decimal)",
             "name": "constant.numeric.integer.decimal.dragonstone",
             "match": "\\b(?!0[0-9])[0-9][0-9_]*([ui](8|16|32|64|128))?\\b"
         },
         {
-            "comment": "Integer literal (hexadecimal)",
             "name": "constant.numeric.integer.hexadecimal.dragonstone",
             "match": "\\b0x[a-fA-F0-9_]+([ui](8|16|32|64|128))?\\b"
         },
         {
-            "comment": "Integer literal (octal)",
             "name": "constant.numeric.integer.octal.dragonstone",
             "match": "\\b0o[0-7_]+([ui](8|16|32|64|128))?\\b"
         },
         {
-            "comment": "Integer literal (binary)",
             "name": "constant.numeric.integer.binary.dragonstone",
             "match": "\\b0b[01_]+([ui](8|16|32|64|128))?\\b"
         },
@@ -631,7 +613,6 @@
                     "name": "punctuation.definition.symbol.begin.dragonstone"
                 }
             },
-            "comment": "symbol literal with '' delimiter",
             "end": "'",
             "endCaptures": {
                 "0": {
@@ -653,7 +634,6 @@
                     "name": "punctuation.section.symbol.begin.dragonstone"
                 }
             },
-            "comment": "symbol literal with \"\" delimiter",
             "end": "\"",
             "endCaptures": {
                 "0": {
@@ -671,7 +651,6 @@
             ]
         },
         {
-            "comment": "Needs higher precedence than regular expressions.",
             "match": "(?<!\\()/=",
             "name": "keyword.operator.assignment.augmented.dragonstone"
         },
@@ -682,7 +661,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "string literal with '' delimiter",
             "end": "'",
             "endCaptures": {
                 "0": {
@@ -704,7 +682,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "string literal with interpolation and \"\" delimiter",
             "end": "\"",
             "endCaptures": {
                 "0": {
@@ -728,7 +705,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "execute string (allows for interpolation)",
             "end": "`",
             "endCaptures": {
                 "0": {
@@ -752,7 +728,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "execute string (allow for interpolation)",
             "end": "\\}",
             "endCaptures": {
                 "0": {
@@ -779,7 +754,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "execute string (allow for interpolation)",
             "end": "\\]",
             "endCaptures": {
                 "0": {
@@ -806,7 +780,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "execute string (allow for interpolation)",
             "end": "\\>",
             "endCaptures": {
                 "0": {
@@ -833,7 +806,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "execute string (allow for interpolation)",
             "end": "\\)",
             "endCaptures": {
                 "0": {
@@ -860,7 +832,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "execute string (allow for interpolation)",
             "end": "\\|",
             "endCaptures": {
                 "0": {
@@ -887,7 +858,6 @@
                     "name": "punctuation.definition.string.dragonstone"
                 }
             },
-            "comment": "regular expressions (normal) we only start a regexp if the character before it (excluding whitespace) is what we think is before a regexp",
             "contentName": "string.regexp.classic.dragonstone",
             "end": "((/[imsx]*))",
             "patterns": [
@@ -903,7 +873,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "regular expressions (literal)",
             "end": "\\}[imsx]*",
             "endCaptures": {
                 "0": {
@@ -927,7 +896,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "regular expressions (literal)",
             "end": "\\][imsx]*",
             "endCaptures": {
                 "0": {
@@ -951,7 +919,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "regular expressions (literal)",
             "end": "\\)[imsx]*",
             "endCaptures": {
                 "0": {
@@ -975,7 +942,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "regular expressions (literal)",
             "end": "\\>[imsx]*",
             "endCaptures": {
                 "0": {
@@ -999,7 +965,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "regular expressions (literal)",
             "end": "\\|[imsx]*",
             "endCaptures": {
                 "0": {
@@ -1020,7 +985,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "literal capable of interpolation ()",
             "end": "\\)",
             "endCaptures": {
                 "0": {
@@ -1047,7 +1011,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "literal capable of interpolation []",
             "end": "\\]",
             "endCaptures": {
                 "0": {
@@ -1074,7 +1037,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "literal capable of interpolation <>",
             "end": "\\>",
             "endCaptures": {
                 "0": {
@@ -1101,7 +1063,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "literal capable of interpolation -- {}",
             "end": "\\}",
             "endCaptures": {
                 "0": {
@@ -1128,7 +1089,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "literal capable of interpolation -- ||",
             "end": "\\|",
             "endCaptures": {
                 "0": {
@@ -1152,7 +1112,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "literal incapable of interpolation -- ()",
             "end": "\\)",
             "endCaptures": {
                 "0": {
@@ -1177,7 +1136,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "literal incapable of interpolation -- <>",
             "end": "\\>",
             "endCaptures": {
                 "0": {
@@ -1202,7 +1160,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "literal incapable of interpolation -- []",
             "end": "\\]",
             "endCaptures": {
                 "0": {
@@ -1227,7 +1184,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "literal incapable of interpolation -- {}",
             "end": "\\}",
             "endCaptures": {
                 "0": {
@@ -1252,7 +1208,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "literal incapable of interpolation -- ||",
             "end": "\\|",
             "endCaptures": {
                 "0": {
@@ -1262,7 +1217,6 @@
             "name": "string.quoted.other.literal.lower.dragonstone",
             "patterns": [
                 {
-                    "comment": "Cant be named because its not necessarily an escape.",
                     "match": "\\\\."
                 }
             ]
@@ -1273,7 +1227,6 @@
                     "name": "punctuation.definition.constant.dragonstone"
                 }
             },
-            "comment": "symbols",
             "match": "(?<!:)(:)(?>[a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*(?>[?!]|=(?![>=]))?|===?|>[>=]?|<[<=]?|<=>|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\][?=]?|@@?[a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*)",
             "name": "constant.other.symbol.dragonstone"
         },
@@ -1283,7 +1236,6 @@
                     "name": "punctuation.definition.constant.dragonstone"
                 }
             },
-            "comment": "symbols",
             "match": "(?>[a-zA-Z_\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*(?>[?!])?)(:)(?!:)",
             "name": "constant.other.symbol.dragonstone.19syntax"
         },
@@ -1311,7 +1263,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with embedded HTML and indented terminator",
             "contentName": "text.html.embedded.dragonstone",
             "end": "\\s*\\2\\b",
             "endCaptures": {
@@ -1342,7 +1293,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with embedded SQL and indented terminator",
             "contentName": "text.sql.embedded.dragonstone",
             "end": "\\s*\\2\\b",
             "endCaptures": {
@@ -1373,7 +1323,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with embedded css and intented terminator",
             "contentName": "text.css.embedded.dragonstone",
             "end": "\\s*\\2\\b",
             "endCaptures": {
@@ -1404,7 +1353,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with embedded c++ and intented terminator",
             "contentName": "text.c++.embedded.dragonstone",
             "end": "\\s*\\2\\b",
             "endCaptures": {
@@ -1435,7 +1383,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with embedded c++ and intented terminator",
             "contentName": "text.c.embedded.dragonstone",
             "end": "\\s*\\2\\b",
             "endCaptures": {
@@ -1466,7 +1413,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with embedded javascript and intented terminator",
             "contentName": "text.js.embedded.dragonstone",
             "end": "\\s*\\2\\b",
             "endCaptures": {
@@ -1497,7 +1443,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with embedded javascript and intented terminator",
             "contentName": "text.js.jquery.embedded.dragonstone",
             "end": "\\s*\\2\\b",
             "endCaptures": {
@@ -1528,7 +1473,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with embedded shell and intented terminator",
             "contentName": "text.shell.embedded.dragonstone",
             "end": "\\s*\\2\\b",
             "endCaptures": {
@@ -1559,7 +1503,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with embedded dragonstone and intented terminator",
             "contentName": "text.dragonstone.embedded.dragonstone",
             "end": "\\s*\\2\\b",
             "endCaptures": {
@@ -1590,7 +1533,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with indented terminator",
             "end": "\\s*\\1\\b",
             "endCaptures": {
                 "0": {
@@ -1614,7 +1556,6 @@
                     "name": "punctuation.definition.string.begin.dragonstone"
                 }
             },
-            "comment": "heredoc with indented terminator",
             "end": "\\s*\\1\\b",
             "endCaptures": {
                 "0": {
@@ -1657,12 +1598,10 @@
             ]
         },
         {
-            "comment": "Map key-value separator (thin arrow)",
             "match": "->",
             "name": "punctuation.separator.key-value.dragonstone"
         },
         {
-            "comment": "Lambda/function type arrow (when not part of return type)",
             "match": "(?<![-\\s])->(?!\\s*[A-Za-z])",
             "name": "keyword.operator.arrow.dragonstone"
         },
@@ -1675,27 +1614,22 @@
             "name": "keyword.operator.comparison.dragonstone"
         },
         {
-            "comment": "Range operators",
             "match": "\\.\\.\\.|\\.\\.",
             "name": "keyword.operator.range.dragonstone"
         },
         {
-            "comment": "Floor division",
             "match": "//",
             "name": "keyword.operator.arithmetic.dragonstone"
         },
         {
-            "comment": "Wrapping operators",
             "match": "&\\+|&\\-|&\\*|&\\*\\*",
             "name": "keyword.operator.arithmetic.wrapping.dragonstone"
         },
         {
-            "comment": "Bit shift operators",
             "match": "<<|>>",
             "name": "keyword.operator.bitwise.shift.dragonstone"
         },
         {
-            "comment": "Safe array access",
             "match": "\\]\\?",
             "name": "keyword.operator.safe-access.dragonstone"
         },
@@ -1708,7 +1642,6 @@
             "name": "keyword.operator.macro.dragonstone"
         },
         {
-            "comment": "Safe navigation operator",
             "match": "(&\\.)\\s*(?![A-Z])",
             "captures": {
                 "1": {
@@ -1771,7 +1704,6 @@
             ]
         },
         {
-            "comment": "This is kindof experimental. There really is no way to perfectly match all regular variables, but you can pretty well assume that any normal word in certain curcumstances that havnt already been scoped as something else are probably variables, and the advantages beat the potential errors",
             "match": "((?<=\\W)\\b|^)\\w+\\b(?=\\s*([\\]\\)\\}\\=\\+\\-\\*\\/\\^\\$\\,\\.]|<\\s|<<[\\s|\\.]))",
             "name": "variable.other.dragonstone"
         }
@@ -2172,7 +2104,6 @@
                             "name": "punctuation.definition.comment.dragonstone"
                         }
                     },
-                    "comment": "We are restrictive in what we allow to go after the comment character to avoid false positives, since the availability of comments depend on regexp flags.",
                     "match": "(?<=^|\\s)(#)\\s[[a-zA-Z0-9,. \\t?!-][^\\x{00}-\\x{7F}]]*$",
                     "name": "comment.line.number-sign.dragonstone"
                 }
