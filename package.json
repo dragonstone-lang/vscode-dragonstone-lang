@@ -63,11 +63,6 @@
             "language": "dragonstone forge",
             "scopeName": "source.dragonstone-forge",
             "path": "./syntaxes/dragonstone-forge.tmLanguage.json"
-        }],
-        "iconThemes": [{
-            "id": "dragonstone-icons",
-            "label": "Dragonstone Icons",
-            "path": "./icons/dragonstone-icon-theme.json"
         }]
     }
 }

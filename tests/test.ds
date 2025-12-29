@@ -1,19 +1,25 @@
+#[
+
+    Examples of Dragonstone code snippets for testing syntax highlighting.
+    
+]#
+
 # Example One
-puts "Hello World!"
+echo "Hello World!"
 
 # Example Two
 name = "Ringo"
-puts name
+echo name
 
 # Example Three
 def greet(name)
-    puts "Hello, #{name}!"
+    echo "Hello, #{name}!"
 end
 greet("Jules")
 
 # Example Four
 name: str = "Peet"
-puts name
+echo name
 
 # Example Five
 class 🔥
@@ -21,7 +27,7 @@ class 🔥
   
     def 道
         if あ
-            puts "Hello!"
+            echo "Hello!"
         end
     end
 end
@@ -31,10 +37,23 @@ end
 a: int = 10
 b: int = 10
 numbers = a + b
-puts numbers
+echo numbers
 
 # Example Six
 def 😱(name: str) -> str
-    puts "Hello, #{name}!"
+    echo "Hello, #{name}!"
 end
 😱("V")
+
+&mut 
+@own 
+
+con
+var
+fix
+let
+
+echo
+eecho
+e!
+ee!

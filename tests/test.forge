@@ -1,0 +1,12 @@
+[PACKAGE]
+name        =   "Dragonstone"
+version     =   "0.0.6"
+authors     =   "Vallereya"
+license     =   "Apache-2.0"
+description =   "The Dragonstone Programming Language and its Standard Library"
+
+[DRAGONSTONE VERSION]
+require     =   "0.0.5"
+
+[TARGET]
+main        =   "./bin/dragonstone"

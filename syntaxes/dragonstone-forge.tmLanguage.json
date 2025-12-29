@@ -1,6 +1,10 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Dragonstone",
+    "fileTypes":
+    [
+        "forge"
+	],
 	"patterns": [
 		{
 			"include": "#keywords"
@@ -28,5 +32,5 @@
 			]
 		}
 	},
-	"scopeName": "source.dragonstone"
+	"scopeName": "source.dragonstone-forge"
 }
