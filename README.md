@@ -1,5 +1,5 @@
 <p align="center">
-    <div align="center"> <img src="./index/logos/dragonstone-logo-type.png" width="500"/> </div>
+    <div align="center"> <img src="https://dragonstone-lang.org/_app/immutable/assets/dragonstone-logo-type.BtOzxUlb.png" width="500"/> </div>
 </p>
 
 # vscode-dragonstone-lang
