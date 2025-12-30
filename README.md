@@ -12,8 +12,10 @@ This is the official VSCode extension for the [dragonstone programming language]
 - Basic LSP
     - Server/Client all-in-one.
     - Hover to show symbol/type info.
-    - Go to definition with a simple symbol table.
-    - Document symbols so Outline works.
+    - Go to definition.
+    - Document symbols.
+    - Auto-completion.
+    - Diagnostics for syntax/semantic errors.
     - Formatting.
 
 - Syntax Highlighting (*via TextMate grammar*)
