@@ -1,4 +1,7 @@
 {
+    "information_for_contributors": [
+		"This file is based on https://github.com/Microsoft/vscode/blob/master/extensions/ruby/syntaxes/ruby.tmLanguage.json and https://github.com/crystal-lang-tools/vscode-crystal-lang/blob/master/syntaxes/crystal.json"
+	],
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name": "Dragonstone",
     "fileTypes": [
@@ -403,11 +406,11 @@
             "name": "support.class.dragonstone"
         },
         {
-            "match": "(?<!\\.)\\b(abort|at_exit|caller|exit|gets|main|raise|rand|read_line|sleep|sprintf|system|debugger|record|spawn|thread|channel|fiber|drop)\\b(?![?!:])",
+            "match": "(?<!\\.)\\b(main|quit|abort|sleep|spawn|thread|channel|fiber|send|receive|async|await|allocate|deallocate|reallocate|drop)\\b(?![?!:])",
             "name": "support.function.kernel.dragonstone"
         },
         {
-            "match": "\\b(GC|Area)\\.(escape|begin_area|end_area|allocate)\\b",
+            "match": "\\b(GC|Area)\\.(escape|begin_area|end_area)\\b",
             "captures": {
                 "1": {
                     "name": "support.class.dragonstone"

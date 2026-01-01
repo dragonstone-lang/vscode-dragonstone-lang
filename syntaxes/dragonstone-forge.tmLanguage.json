@@ -1,4 +1,7 @@
 {
+    "information_for_contributors": [
+		"This file is not based on any existing grammar and was created from scratch."
+	],
     "$schema":          "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name":             "Dragonstone Forge",
     "fileTypes": [

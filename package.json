@@ -3,7 +3,7 @@
     "displayName":                  "Dragonstone Language",
     "description":                  "The Dragonstone Programming Language",
     "version":                      "1.0.0",
-    "publisher":                    "vallereya",
+    "publisher":                    "dragonstone",
     "icon":                         "index/icons/dragonstone.png",
     "galleryBanner": {
 		"color":                    "#1D1D1D",
@@ -12,9 +12,9 @@
 	"license":                      "MIT",
     "repository": {
 		"type":                     "git",
-		"url":                      "https://github.com/vallereya/vscode-dragonstone-lang"
+		"url":                      "https://github.com/dragonstone-lang/vscode-dragonstone-lang"
 	},
-    "bugs":                         "https://github.com/vallereya/vscode-dragonstone-lang/issues",
+    "bugs":                         "https://github.com/dragonstone-lang/vscode-dragonstone-lang/issues",
     "engines": {
         "vscode":                   "^1.105.0"
     },
@@ -71,7 +71,34 @@
                 "scopeName":        "source.dragonstone-forge",
                 "path":             "./syntaxes/dragonstone-forge.tmLanguage.json"
             }
-        ]
+        ],
+        "commands": [
+            {
+                "command":          "dragonstone.toggleLsp",
+                "title":            "Toggle Language Server",
+                "category":         "Dragonstone"
+            },
+            {
+                "command":          "dragonstone.enableLsp",
+                "title":            "Enable Language Server",
+                "category":         "Dragonstone"
+            },
+            {
+                "command":          "dragonstone.disableLsp",
+                "title":            "Disable Language Server",
+                "category":         "Dragonstone"
+            }
+        ],
+        "configuration": {
+            "title":                "Dragonstone",
+            "properties": {
+                "dragonstone.lsp.enabled": {
+                    "type":         "boolean",
+                    "default":      true,
+                    "description":  "Enable or disable the Dragonstone Language Server"
+                }
+            }
+        }
     },
     "scripts": {
         "build": "tsc -p . && npm --prefix server run build",
