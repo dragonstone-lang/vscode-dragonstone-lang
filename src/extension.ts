@@ -10,9 +10,10 @@ import {
 let client: LanguageClient | undefined;
 let statusBarItem: vscode.StatusBarItem | undefined;
 
+// Start the language server.
 async function startLanguageServer(context: vscode.ExtensionContext): Promise<void> {
     if (client) {
-        return; // Already running
+        return;
     }
 
     const serverModule = context.asAbsolutePath(
@@ -49,9 +50,10 @@ async function startLanguageServer(context: vscode.ExtensionContext): Promise<vo
     updateStatusBar(true);
 }
 
+// Stop the language server.
 async function stopLanguageServer(): Promise<void> {
     if (!client) {
-        return; // Not running
+        return;
     }
 
     await client.stop();
@@ -76,7 +78,8 @@ function updateStatusBar(isEnabled: boolean): void {
 }
 
 export async function activate(context: vscode.ExtensionContext) {
-    // Create status bar item
+
+    // Create status bar item.
     statusBarItem = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right,
         100
@@ -85,7 +88,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(statusBarItem);
     statusBarItem.show();
 
-    // Register toggle command
+    // Register toggle command.
     const toggleCommand = vscode.commands.registerCommand(
         "dragonstone.toggleLsp",
         async () => {
@@ -106,7 +109,7 @@ export async function activate(context: vscode.ExtensionContext) {
     );
     context.subscriptions.push(toggleCommand);
 
-    // Register explicit enable command
+    // Register explicit enable command.
     const enableCommand = vscode.commands.registerCommand(
         "dragonstone.enableLsp",
         async () => {
@@ -118,7 +121,7 @@ export async function activate(context: vscode.ExtensionContext) {
     );
     context.subscriptions.push(enableCommand);
 
-    // Register explicit disable command
+    // Register explicit disable command.
     const disableCommand = vscode.commands.registerCommand(
         "dragonstone.disableLsp",
         async () => {
@@ -130,7 +133,7 @@ export async function activate(context: vscode.ExtensionContext) {
     );
     context.subscriptions.push(disableCommand);
 
-    // Check configuration and start if enabled
+    // Check configuration and start if enabled.
     const config = vscode.workspace.getConfiguration("dragonstone");
     const lspEnabled = config.get<boolean>("lsp.enabled", true);
 
@@ -140,7 +143,7 @@ export async function activate(context: vscode.ExtensionContext) {
         updateStatusBar(false);
     }
 
-    // Watch for configuration changes
+    // Watch for configuration changes.
     context.subscriptions.push(
         vscode.workspace.onDidChangeConfiguration(async (e) => {
             if (e.affectsConfiguration("dragonstone.lsp.enabled")) {
